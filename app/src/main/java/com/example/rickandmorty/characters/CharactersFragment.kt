@@ -5,10 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmorty.databinding.FragmentCharactersBinding
 
 
 class CharactersFragment : Fragment() {
+
+    private val viewModel: CharactersViewModel by lazy {
+        ViewModelProvider(this)[CharactersViewModel::class.java]
+    }
 
     private var _binding: FragmentCharactersBinding? = null
     private val binding get() = _binding!!
@@ -17,7 +22,7 @@ class CharactersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       _binding = FragmentCharactersBinding.inflate(inflater, container, false)
+        _binding = FragmentCharactersBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -29,7 +34,7 @@ class CharactersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ExText.text = "hi"
+        binding.ExText.text = viewModel.response.value
     }
 
 }
