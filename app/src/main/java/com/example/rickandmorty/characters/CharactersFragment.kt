@@ -1,6 +1,7 @@
 package com.example.rickandmorty.characters
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,7 @@ class CharactersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.ExText.text = viewModel.response.value
+        Log.i("pedram" , "${viewModel.response}")
     }
 
 }
