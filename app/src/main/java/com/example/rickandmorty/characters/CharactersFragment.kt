@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.rickandmorty.databinding.FragmentCharactersBinding
 
@@ -34,7 +35,11 @@ class CharactersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.ExText.text = viewModel.response.value
-    }
+        viewModel.response.observe(viewLifecycleOwner, Observer { responseString ->
+            binding.ExText.text = responseString.toString()
+        })
+
+
+}
 
 }
