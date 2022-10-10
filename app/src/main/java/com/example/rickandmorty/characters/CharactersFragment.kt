@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentCharactersBinding
 
 
@@ -36,10 +40,28 @@ class CharactersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.response.observe(viewLifecycleOwner, Observer { responseString ->
-            binding.ExText.text = responseString
+            Glide.with(this)
+                .load(responseString)
+                .apply(
+                    RequestOptions()
+                        .placeholder(R.drawable.loading_animation)
+                        .error(R.drawable.ic_broken_image))
+                .into(binding.testImage)
+
         })
 
-
     }
+
+
+    /*fun showImage(testImage: ImageView, imgUrl: String? = _response.value) {
+        if (_response.value !== null) {
+            Glide.with(testImage.context)
+                .load(imgUrl)
+                .into(testImage)
+        } else {
+            imageview.setImageResource(R.drawable.ic_launcher_background)
+        }
+*/
+
 
 }

@@ -1,8 +1,10 @@
 package com.example.rickandmorty.characters
 
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.bumptech.glide.Glide
 import com.example.rickandmorty.network.RAMApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +32,8 @@ class CharactersViewModel : ViewModel() {
             var getCharactersDeferred = RAMApi.retrofitService.getCharacters()
             try {
                 var result = getCharactersDeferred.await()
-                _response.value = result.results.toString()
+                _response.value = result.results[0].image
+
             }
             catch(t:Throwable) {
                 _response.value = "Fail = " + t.message
@@ -40,16 +43,10 @@ class CharactersViewModel : ViewModel() {
 
     }
 
-        /*RAMApi.retrofitService.getCharacters().enqueue(object : Callback<CharactersList> {
-            override fun onResponse(call: Call<CharactersList>, response: Response<CharactersList>) {
-                _response.value = response.body()?.results.toString()
-            }
-
-            override fun onFailure(call: Call<CharactersList>, t: Throwable) {
-                _response.value = "Fail = " + t.message
-            }
-        })*/
-
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 
 
 
