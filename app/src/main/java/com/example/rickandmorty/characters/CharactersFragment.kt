@@ -36,10 +36,10 @@ class CharactersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.response.observe(viewLifecycleOwner, Observer { responseString ->
-            binding.ExText.text = responseString.toString()
+            binding.ExText.text = responseString
         })
 
 
-}
+    }
 
 }

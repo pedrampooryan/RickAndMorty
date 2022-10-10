@@ -19,13 +19,13 @@ class CharactersViewModel : ViewModel() {
     }
 
     private fun getRAMCharacters() {
-        RAMApi.retrofitService.getCharacters().enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                _response.value = response.body()
+        RAMApi.retrofitService.getCharacters().enqueue(object : Callback<CharactersList> {
+            override fun onResponse(call: Call<CharactersList>, response: Response<CharactersList>) {
+                _response.value = response.body()?.results?.size.toString()
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                _response.value = "Fail" + t.message
+            override fun onFailure(call: Call<CharactersList>, t: Throwable) {
+                _response.value = "Fail = " + t.message
             }
         })
 

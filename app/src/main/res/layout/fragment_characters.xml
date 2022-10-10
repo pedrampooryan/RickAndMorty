@@ -6,7 +6,6 @@
 
     tools:context=".characters.CharactersFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/ExText"
         android:layout_width="match_parent"
