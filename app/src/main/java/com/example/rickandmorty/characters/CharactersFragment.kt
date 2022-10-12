@@ -2,12 +2,14 @@ package com.example.rickandmorty.characters
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.rickandmorty.R
@@ -20,9 +22,14 @@ class CharactersFragment : Fragment() {
         ViewModelProvider(this)[CharactersViewModel::class.java]
     }
 
-
     private var _binding: FragmentCharactersBinding? = null
     private val binding get() = _binding!!
+
+    private val adapter = CharactersAdapter()
+
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +46,20 @@ class CharactersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.RecyclerView.adapter = adapter
 
-        viewModel.response.observe(viewLifecycleOwner, Observer { responseString ->
+        binding.RecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        viewModel.response.observe(viewLifecycleOwner, Observer { listChars ->
+            if (listChars.isSuccessful) {
+                adapter.setCharacters(listChars.body()!!.results)
+            }
+            else {
+                Log.i("Error", listChars.code().toString())
+            }
+        })
+
+        /*viewModel.response.observe(viewLifecycleOwner, Observer { responseString ->
             Glide.with(this)
                 .load(responseString)
                 .apply(
@@ -49,7 +68,7 @@ class CharactersFragment : Fragment() {
                         .error(R.drawable.ic_broken_image))
                 .into(binding.testImage)
 
-        })
+        })*/
 
     }
 
