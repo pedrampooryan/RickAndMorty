@@ -1,4 +1,4 @@
-package com.example.rickandmorty.characters
+package com.example.rickandmorty.charactersInfo
 
 data class CharactersProperty(
     val id: Int,
