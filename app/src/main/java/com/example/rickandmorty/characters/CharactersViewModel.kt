@@ -1,23 +1,23 @@
 package com.example.rickandmorty.characters
 
-import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bumptech.glide.Glide
 import com.example.rickandmorty.charactersInfo.CharactersList
-import com.example.rickandmorty.charactersInfo.CharactersProperty
 import com.example.rickandmorty.network.RAMApi
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
+enum class ApiStatus { Error, Loading, Done }
 
 class CharactersViewModel : ViewModel() {
 
     private val _response = MutableLiveData<CharactersList>()
     val response: LiveData<CharactersList>
         get() = _response
+
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -28,14 +28,15 @@ class CharactersViewModel : ViewModel() {
 
     private fun getRAMCharacters() {
         coroutineScope.launch {
-            val getCharactersDeferred = RAMApi.retrofitService.getCharacters()
-           // try {
+            _status.value = ApiStatus.Loading
+            try {
+                val getCharactersDeferred = RAMApi.retrofitService.getCharacters()
                 val result = getCharactersDeferred.await()
                 _response.value = result
-           // }
-          /*  catch(t:Throwable) {
-                _response.value = "Fail = " + t.message
-            }*/
+                _status.value = ApiStatus.Done
+            } catch (t: Throwable) {
+                _status.value = ApiStatus.Error
+            }
 
         }
 
@@ -45,7 +46,6 @@ class CharactersViewModel : ViewModel() {
         super.onCleared()
         viewModelJob.cancel()
     }
-
 
 
 }
