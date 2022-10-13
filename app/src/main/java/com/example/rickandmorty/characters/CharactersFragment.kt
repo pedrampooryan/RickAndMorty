@@ -51,12 +51,10 @@ class CharactersFragment : Fragment() {
         binding.RecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         viewModel.response.observe(viewLifecycleOwner, Observer { listChars ->
-            if (listChars.isSuccessful) {
-                adapter.setCharacters(listChars.body()!!.results)
-            }
-            else {
-                Log.i("Error", listChars.code().toString())
-            }
+
+                adapter.setCharacters(listChars.results)
+
+
         })
 
         /*viewModel.response.observe(viewLifecycleOwner, Observer { responseString ->

@@ -15,8 +15,8 @@ import retrofit2.Response
 
 class CharactersViewModel : ViewModel() {
 
-    private val _response = MutableLiveData<Response<CharactersList>>()
-    val response: LiveData<Response<CharactersList>>
+    private val _response = MutableLiveData<CharactersList>()
+    val response: LiveData<CharactersList>
         get() = _response
 
     private val viewModelJob = Job()
@@ -30,7 +30,7 @@ class CharactersViewModel : ViewModel() {
         coroutineScope.launch {
             val getCharactersDeferred = RAMApi.retrofitService.getCharacters()
            // try {
-                val result = getCharactersDeferred
+                val result = getCharactersDeferred.await()
                 _response.value = result
            // }
           /*  catch(t:Throwable) {

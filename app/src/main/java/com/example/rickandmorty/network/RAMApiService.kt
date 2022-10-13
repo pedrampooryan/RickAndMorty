@@ -25,7 +25,7 @@ private val retrofit = Retrofit.Builder()
 
 interface RAMApiService {
     @GET("api/character")
-     suspend fun getCharacters(): Response<CharactersList>
+     fun getCharacters(): Deferred<CharactersList>
 }
 
 object RAMApi {
