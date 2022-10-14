@@ -9,6 +9,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 private const val Base_URL = "https://rickandmortyapi.com/"
 
@@ -25,7 +26,7 @@ private val retrofit = Retrofit.Builder()
 
 interface RAMApiService {
     @GET("api/character")
-     fun getCharacters(): Deferred<CharactersList>
+     fun getCharacters(@Query("page") page: Int): Deferred<CharactersList>
 }
 
 object RAMApi {
