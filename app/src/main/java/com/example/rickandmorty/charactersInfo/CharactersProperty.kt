@@ -12,3 +12,12 @@ data class CharactersProperty(
     val episode: List<String>
 
 )
+
+data class CharactersList(
+    val results: List<CharactersProperty>
+)
+data class LocOriName(
+    val name: String
+)
+
+

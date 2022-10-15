@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentCharactersBinding
+import java.util.Objects
 
 
 class CharactersFragment : Fragment() {
@@ -73,28 +73,11 @@ class CharactersFragment : Fragment() {
             }
         })
 
-        viewModel.getRAMCharacters(1)
-        binding.RecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                when (newState) {
-                    AbsListView.OnScrollListener.SCROLL_STATE_IDLE -> {
-                        val pos: Int =
-                            (binding.RecyclerView.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
-                        Log.i("position", pos.toString())
-                        if (page == t && pos >= ((page * 20) - 6)) {
-                            page++
-                            t++
-                            viewModel.getRAMCharacters(page)
-                        }
-                    }
-                    else -> {}
-                }
-
+        // get Characters using pagination
+        OnPageBottom().getOnPageBottom(binding.RecyclerView, object : AddGetDataFunction {
+            override fun getData(page: Int) {
+                viewModel.getRAMCharacters(page)
             }
-
         })
-
     }
-
 }

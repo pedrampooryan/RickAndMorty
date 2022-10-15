@@ -3,6 +3,7 @@ package com.example.rickandmorty.characters
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.charactersInfo.CharactersList
 import com.example.rickandmorty.charactersInfo.CharactersProperty
@@ -12,6 +13,7 @@ import kotlinx.coroutines.*
 enum class ApiStatus { Error, Loading, Done }
 
 class CharactersViewModel() : ViewModel() {
+
 
     var charsList = emptyList<CharactersProperty>()
 
@@ -24,17 +26,17 @@ class CharactersViewModel() : ViewModel() {
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val viewModelJob = Job()
+   /* private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
 
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
-    }
+    }*/
 
     fun getRAMCharacters(page: Int) {
-        coroutineScope.launch {
+        viewModelScope.launch {
             _status.value = ApiStatus.Loading
 
             try {

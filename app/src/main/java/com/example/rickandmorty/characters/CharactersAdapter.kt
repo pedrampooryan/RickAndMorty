@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
 import com.example.rickandmorty.charactersInfo.CharactersProperty
 import com.example.rickandmorty.databinding.CharacterViewBinding
@@ -21,10 +22,16 @@ class CharactersAdapter :
         fun bind(character: CharactersProperty) {
             binding.characterIdText.text = character.id.toString()
             binding.characterNameText.text = character.name
-            Picasso.get().load(character.image)
+           /* Picasso.get().load(character.image)
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.ic_broken_image)
+                .into(binding.characterImage)*/
+            Glide.with(binding.characterImage.context)
+                .load(character.image)
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_broken_image)
                 .into(binding.characterImage)
+
         }
     }
 
