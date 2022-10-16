@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -26,6 +28,9 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+    kapt {
+        correctErrorTypes true
     }
 
     compileOptions {
@@ -70,10 +75,12 @@ dependencies {
     //RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    //picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
 
-    //float
+    //dagger-Hilt
+    implementation 'com.google.dagger:hilt-android:2.44'
+    kapt 'com.google.dagger:hilt-compiler:2.44'
+
+
 
 
     testImplementation 'junit:junit:4.13.2'

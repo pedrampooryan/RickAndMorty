@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
 import com.example.rickandmorty.charactersInfo.CharactersProperty
 import com.example.rickandmorty.databinding.CharacterViewBinding
-import com.squareup.picasso.Picasso
 
 
 //class CharactersAdapter() : RecyclerView.Adapter<CharactersAdapter.CharViewHolder>() {

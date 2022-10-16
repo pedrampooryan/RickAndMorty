@@ -11,23 +11,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val Base_URL = "https://rickandmortyapi.com/"
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .baseUrl(Base_URL)
-    .build()
-
 interface RAMApiService {
+
     @GET("api/character")
     fun getCharacters(@Query("page") page: Int): Deferred<CharactersList>
 }
 
-object RAMApi {
-    val retrofitService: RAMApiService by lazy { retrofit.create(RAMApiService::class.java) }
-}

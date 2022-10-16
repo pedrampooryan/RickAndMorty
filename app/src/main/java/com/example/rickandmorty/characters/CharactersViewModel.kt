@@ -4,15 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmorty.charactersInfo.CharactersList
 import com.example.rickandmorty.charactersInfo.CharactersProperty
-import com.example.rickandmorty.network.RAMApi
-import kotlinx.coroutines.*
+import com.example.rickandmorty.network.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 enum class ApiStatus { Error, Loading, Done }
 
-class CharactersViewModel() : ViewModel() {
+@HiltViewModel
+class CharactersViewModel @Inject constructor (private val repository: Repository) : ViewModel() {
 
 
     var charsList = emptyList<CharactersProperty>()
@@ -26,21 +27,13 @@ class CharactersViewModel() : ViewModel() {
     val status: LiveData<ApiStatus>
         get() = _status
 
-   /* private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }*/
 
     fun getRAMCharacters(page: Int) {
         viewModelScope.launch {
             _status.value = ApiStatus.Loading
 
             try {
-                val getCharactersDeferred = RAMApi.retrofitService.getCharacters(page)
+                val getCharactersDeferred = repository.getCharacters(page)
                 val result = getCharactersDeferred.await()
                 charsList = charsList + result.results
                 _charsListLive.value = charsList

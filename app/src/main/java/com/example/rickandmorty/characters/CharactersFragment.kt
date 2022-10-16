@@ -6,23 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentCharactersBinding
+import com.example.rickandmorty.network.Repository
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Objects
 
-
+@AndroidEntryPoint
 class CharactersFragment : Fragment() {
 
-    private var page: Int = 1
-    private var t: Int = 1
-
-    private val viewModel: CharactersViewModel by lazy {
-        ViewModelProvider(this)[CharactersViewModel::class.java]
-    }
+    /*private val viewModel: CharactersViewModel by viewModels{CharactersViewModelFactory(
+        Repository()
+    )  }*/
+    private val viewModel: CharactersViewModel by activityViewModels()
 
     private var _binding: FragmentCharactersBinding? = null
     private val binding get() = _binding!!

@@ -16,6 +16,7 @@ data class CharactersProperty(
 data class CharactersList(
     val results: List<CharactersProperty>
 )
+
 data class LocOriName(
     val name: String
 )
