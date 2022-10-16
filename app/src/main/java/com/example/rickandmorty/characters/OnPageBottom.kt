@@ -6,13 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class OnPageBottom {
 
-    var page: Int = 1
-
-    fun getOnPageBottom(recyclerView: RecyclerView, action: AddGetDataFunction) {
-        if (page == 1) {
-            action.getData(page)
-        }
-
+    fun getOnPageBottom(recyclerView: RecyclerView, action: () -> Unit) {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
 
@@ -23,15 +17,9 @@ class OnPageBottom {
                 Log.i("PositionNumber", lastPosVisible.toString())
                 Log.i("AllItemsNumber", allItemCount.toString())
                 if (lastPosVisible in (allItemCount - 4)..allItemCount) {
-                    page++
-                    action.getData(page)
+                    action()
                 }
             }
         })
     }
 }
-
-interface AddGetDataFunction {
-    fun getData(page: Int)
-}
-

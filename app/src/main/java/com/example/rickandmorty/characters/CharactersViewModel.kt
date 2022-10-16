@@ -13,9 +13,9 @@ import javax.inject.Inject
 enum class ApiStatus { Error, Loading, Done }
 
 @HiltViewModel
-class CharactersViewModel @Inject constructor (private val repository: Repository) : ViewModel() {
+class CharactersViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
-
+    private var page: Int = 1
     var charsList = emptyList<CharactersProperty>()
 
     private val _charsListLive = MutableLiveData<List<CharactersProperty>>()
@@ -27,13 +27,18 @@ class CharactersViewModel @Inject constructor (private val repository: Repositor
     val status: LiveData<ApiStatus>
         get() = _status
 
+    init {
+        getRAMCharacters()
+    }
 
-    fun getRAMCharacters(page: Int) {
+
+    fun getRAMCharacters(){
         viewModelScope.launch {
             _status.value = ApiStatus.Loading
 
             try {
                 val getCharactersDeferred = repository.getCharacters(page)
+                page++
                 val result = getCharactersDeferred.await()
                 charsList = charsList + result.results
                 _charsListLive.value = charsList
@@ -43,5 +48,6 @@ class CharactersViewModel @Inject constructor (private val repository: Repositor
                 _status.value = ApiStatus.Error
             }
         }
+
     }
 }

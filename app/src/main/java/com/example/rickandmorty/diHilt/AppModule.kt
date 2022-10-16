@@ -1,7 +1,6 @@
 package com.example.rickandmorty.diHilt
 
 import com.example.rickandmorty.network.RAMApiService
-import com.example.rickandmorty.network.Repository
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

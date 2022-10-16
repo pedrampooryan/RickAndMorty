@@ -7,17 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentCharactersBinding
-import com.example.rickandmorty.network.Repository
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.Objects
 
 @AndroidEntryPoint
 class CharactersFragment : Fragment() {
@@ -77,10 +72,10 @@ class CharactersFragment : Fragment() {
         })
 
         // get Characters using pagination
-        OnPageBottom().getOnPageBottom(binding.RecyclerView, object : AddGetDataFunction {
-            override fun getData(page: Int) {
-                viewModel.getRAMCharacters(page)
-            }
-        })
+        OnPageBottom().getOnPageBottom(binding.RecyclerView) {
+            viewModel.getRAMCharacters()
+        }
+
     }
 }
+
