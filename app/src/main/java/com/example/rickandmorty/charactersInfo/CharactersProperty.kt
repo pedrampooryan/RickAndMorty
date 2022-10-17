@@ -1,5 +1,9 @@
 package com.example.rickandmorty.charactersInfo
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CharactersProperty(
     val id: Int,
     val name: String,
@@ -11,14 +15,14 @@ data class CharactersProperty(
     val image: String,
     val episode: List<String>
 
-)
+): Parcelable
 
 data class CharactersList(
     val results: List<CharactersProperty>
 )
-
+@Parcelize
 data class LocOriName(
     val name: String
-)
+): Parcelable
 
 

@@ -2,6 +2,7 @@ package com.example.rickandmorty.characters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,15 +22,19 @@ class CharactersAdapter :
         fun bind(character: CharactersProperty) {
             binding.characterIdText.text = character.id.toString()
             binding.characterNameText.text = character.name
-           /* Picasso.get().load(character.image)
-                .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken_image)
-                .into(binding.characterImage)*/
+            /* Picasso.get().load(character.image)
+                 .placeholder(R.drawable.loading_animation)
+                 .error(R.drawable.ic_broken_image)
+                 .into(binding.characterImage)*/
             Glide.with(binding.characterImage.context)
                 .load(character.image)
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_broken_image)
                 .into(binding.characterImage)
+            itemView.setOnClickListener {view ->
+                val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailFragment(character)
+                view.findNavController().navigate(action)
+            }
 
         }
     }

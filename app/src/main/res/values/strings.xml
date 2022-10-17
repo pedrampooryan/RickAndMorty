@@ -4,4 +4,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="characters_title_text">Characters List</string>
     <string name="character_details">Character Details</string>
+    <string name="Origin">Origin:</string>
+    <string name="Location">Location:</string>
+    <string name="Species">Species:"  %1$s</string>
+    <string name="Gender">Gender:"  %1$s</string>
+    <string name="Status">Status:"  %1$s</string>
+    <string name="quotation"> \"  %1$s \"</string>
+
 </resources>
