@@ -1,4 +1,4 @@
-package com.example.rickandmorty.characters
+package com.example.rickandmorty.charactersList
 
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager

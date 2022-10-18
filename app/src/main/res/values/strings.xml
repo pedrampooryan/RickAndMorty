@@ -10,5 +10,8 @@
     <string name="Gender">Gender:"  %1$s</string>
     <string name="Status">Status:"  %1$s</string>
     <string name="quotation"> \"  %1$s \"</string>
+    <string name="home_Button">Home</string>
+    <string name="favorite_Button">Favorite</string>
+    <string name="clear_all">Clear All</string>
 
 </resources>
