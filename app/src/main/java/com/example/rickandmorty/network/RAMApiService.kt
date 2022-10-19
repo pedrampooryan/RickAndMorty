@@ -15,5 +15,6 @@ interface RAMApiService {
 
     @GET("api/character")
     fun getCharacters(@Query("page") page: Int): Deferred<CharactersList>
+
 }
 

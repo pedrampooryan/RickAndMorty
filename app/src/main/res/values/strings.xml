@@ -13,5 +13,6 @@
     <string name="home_Button">Home</string>
     <string name="favorite_Button">Favorite</string>
     <string name="clear_all">Clear All</string>
+    <string name="add_to_favorite">Add To Favorite</string>
 
 </resources>

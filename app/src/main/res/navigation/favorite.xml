@@ -10,5 +10,13 @@
         android:name="com.example.rickandmorty.favorite.CharactersFavoriteFragment"
         android:label="Favorite Characters"
         tools:layout="@layout/fragment_characters_favorite">
+        <action
+            android:id="@+id/action_charactersFavoriteFragment_to_characterDetailFragment2"
+            app:destination="@id/characterDetailFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/characterDetailFragment2"
+        android:name="com.example.rickandmorty.characterDetail.CharacterDetailFragment"
+        android:label="fragment_character_detail"
+        tools:layout="@layout/fragment_character_detail" />
 </navigation>

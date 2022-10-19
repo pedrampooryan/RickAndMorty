@@ -84,10 +84,12 @@ dependencies {
     implementation 'androidx.navigation:navigation-runtime-ktx:2.5.2'
     implementation 'androidx.navigation:navigation-fragment:2.5.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
+    implementation 'androidx.room:room-common:2.4.3'
     kapt 'com.google.dagger:hilt-compiler:2.44'
 
-    //safeargs
-    //implementation 'androidx.navigation:navigation-safe-args-gradle-plugin:2.6.0-alpha02'
+    //Room database
+    implementation 'androidx.room:room-runtime:2.4.3'
+    kapt 'androidx.room:room-compiler:2.4.3'
 
 
     testImplementation 'junit:junit:4.13.2'
