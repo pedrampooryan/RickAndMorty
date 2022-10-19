@@ -25,5 +25,10 @@ interface AppDao {
     @Query("SELECT * FROM favorite_chars_db_table ORDER BY id ASC")
     fun getAllFavChars(): LiveData<List<CharactersProperty>>
 
+    @Query("DELETE FROM favorite_chars_db_table WHERE id = :id")
+    fun deleteFromFav(id: Int)
+
+    @Query("SELECT EXISTS (SELECT id FROM favorite_chars_db_table WHERE id = :id)")
+    fun existID(id: Int): Boolean
 
 }

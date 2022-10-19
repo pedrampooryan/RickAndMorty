@@ -14,7 +14,7 @@ import com.example.rickandmorty.charactersList.CharactersFragmentDirections
 import com.example.rickandmorty.databinding.CharacterViewBinding
 
 class CharactersFavAdapter :
-    ListAdapter<CharactersProperty, CharactersAdapter.CharViewHolder>(CharsDiffCallback()) {
+    ListAdapter<CharactersProperty, CharactersFavAdapter.CharViewHolder>(CharsDiffCallback()) {
 
     class CharViewHolder(private val binding: CharacterViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -31,20 +31,20 @@ class CharactersFavAdapter :
                 .error(R.drawable.ic_broken_image)
                 .into(binding.characterImage)
             itemView.setOnClickListener {view ->
-                val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailFragment(character)
+                val action = CharactersFavoriteFragmentDirections.actionCharactersFavoriteFragmentToCharacterDetailFragment2(character)
                 view.findNavController().navigate(action)
             }
 
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersAdapter.CharViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersFavAdapter.CharViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = CharacterViewBinding.inflate(layoutInflater, parent, false)
-        return CharactersAdapter.CharViewHolder(view)
+        return CharactersFavAdapter.CharViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CharactersAdapter.CharViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CharactersFavAdapter.CharViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
     }

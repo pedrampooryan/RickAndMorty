@@ -14,5 +14,6 @@
     <string name="favorite_Button">Favorite</string>
     <string name="clear_all">Clear All</string>
     <string name="add_to_favorite">Add To Favorite</string>
+    <string name="no_favorite_character">No Favorite Character !</string>
 
 </resources>

@@ -43,6 +43,14 @@ class CharactersFavoriteFragment : Fragment() {
 
         viewModel.favoriteChars.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
+            if (it.isEmpty()) {
+                binding.clearAllButton.visibility = View.GONE
+                binding.emptyFav.visibility = View.VISIBLE
+            }
+            else {
+                binding.clearAllButton.visibility = View.VISIBLE
+                binding.emptyFav.visibility = View.GONE
+            }
         })
 
         /*binding.clearAllButton.setOnClickListener {

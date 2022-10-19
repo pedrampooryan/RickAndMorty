@@ -28,4 +28,12 @@ class Repository @Inject constructor (private val RAMApi: RAMApiService,private 
         appDao.clearAll()
     }
 
+    fun deleteFav(id: Int) {
+        appDao.deleteFromFav(id)
+    }
+
+    fun existID(id: Int): Boolean {
+       return appDao.existID(id)
+    }
+
 }

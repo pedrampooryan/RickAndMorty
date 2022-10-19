@@ -17,6 +17,10 @@
     <fragment
         android:id="@+id/characterDetailFragment2"
         android:name="com.example.rickandmorty.characterDetail.CharacterDetailFragment"
-        android:label="fragment_character_detail"
-        tools:layout="@layout/fragment_character_detail" />
+        android:label="Character Details"
+        tools:layout="@layout/fragment_character_detail" >
+        <argument
+            android:name="character"
+            app:argType="com.example.rickandmorty.charactersInfo.CharactersProperty" />
+    </fragment>
 </navigation>
