@@ -8,8 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
-import com.example.rickandmorty.characterDetail.CharacterDetailFragment
-import com.example.rickandmorty.charactersList.CharactersFragment
+import com.example.rickandmorty.screens.characterDetail.CharacterDetailFragment
+import com.example.rickandmorty.screens.charactersList.CharactersFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import dagger.hilt.android.AndroidEntryPoint

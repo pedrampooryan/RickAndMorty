@@ -1,4 +1,4 @@
-package com.example.rickandmorty.charactersInfo
+package com.example.rickandmorty.network.charactersInfo
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -26,26 +26,9 @@ data class CharactersProperty(
     @ColumnInfo(name = "gender")
     val gender: String="male",
 
-
-   // val origin: LocOriName,
-
-
-   // val location: LocOriName,
-
     @ColumnInfo(name = "image")
     val image: String="ii",
 
-
 ): Parcelable
 
-data class CharactersList(
-    val results: List<CharactersProperty>
-)
-/*
-@Parcelize
-data class LocOriName(
-    val name: String
-): Parcelable
-
-
-*/
+data class CharactersList( val results: List<CharactersProperty> )

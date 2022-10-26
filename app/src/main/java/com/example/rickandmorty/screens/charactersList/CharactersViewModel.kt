@@ -1,22 +1,28 @@
-package com.example.rickandmorty.charactersList
+package com.example.rickandmorty.screens.charactersList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.charactersInfo.CharactersProperty
+import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 import com.example.rickandmorty.network.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 enum class ApiStatus { Error, Loading, Done }
+enum class RAMApiFilter(val value: String) {  MALE("male"), FEMALE("female"), UNKNOWN("unknown") }
 
 @HiltViewModel
 class CharactersViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     private var page: Int = 1
-    var charsList = emptyList<CharactersProperty>()
+    private var filter: RAMApiFilter? = null
+    private var charsList = emptyList<CharactersProperty>()
+        set(value) {
+            field = value
+            _charsListLive.value = charsList
+        }
 
     private val _charsListLive = MutableLiveData<List<CharactersProperty>>()
     val charactersList: LiveData<List<CharactersProperty>>
@@ -31,23 +37,28 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
         getRAMCharacters()
     }
 
+    fun setFilter(filter: RAMApiFilter?) {
+        if (filter == this.filter) return
+        this.filter = filter
+        page = 1
+        charsList = emptyList()
+        getRAMCharacters()
+    }
 
     fun getRAMCharacters(){
+        if (_status.value == ApiStatus.Loading)  return
         viewModelScope.launch {
             _status.value = ApiStatus.Loading
 
             try {
-                val getCharactersDeferred = repository.getCharacters(page)
+                val result = repository.getCharactersByGender(filter, page)
                 page++
-                val result = getCharactersDeferred.await()
                 charsList = charsList + result.results
-                _charsListLive.value = charsList
-
                 _status.value = ApiStatus.Done
-            } catch (t: Throwable) {
+            }
+            catch (t: Throwable) {
                 _status.value = ApiStatus.Error
             }
         }
-
     }
 }

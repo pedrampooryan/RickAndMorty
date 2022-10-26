@@ -1,4 +1,4 @@
-package com.example.rickandmorty.favorite
+package com.example.rickandmorty.screens.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
-import com.example.rickandmorty.charactersInfo.CharactersProperty
-import com.example.rickandmorty.charactersList.CharactersAdapter
+import com.example.rickandmorty.network.charactersInfo.CharactersProperty
+import com.example.rickandmorty.screens.charactersList.CharactersAdapter
 import com.example.rickandmorty.charactersList.CharactersFragmentDirections
 import com.example.rickandmorty.databinding.CharacterViewBinding
+import com.example.rickandmorty.favorite.CharactersFavoriteFragmentDirections
 
 class CharactersFavAdapter :
     ListAdapter<CharactersProperty, CharactersFavAdapter.CharViewHolder>(CharsDiffCallback()) {
@@ -31,20 +32,23 @@ class CharactersFavAdapter :
                 .error(R.drawable.ic_broken_image)
                 .into(binding.characterImage)
             itemView.setOnClickListener {view ->
-                val action = CharactersFavoriteFragmentDirections.actionCharactersFavoriteFragmentToCharacterDetailFragment2(character)
+                val action =
+                    CharactersFavoriteFragmentDirections.actionCharactersFavoriteFragmentToCharacterDetailFragment2(
+                        character
+                    )
                 view.findNavController().navigate(action)
             }
 
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersFavAdapter.CharViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = CharacterViewBinding.inflate(layoutInflater, parent, false)
-        return CharactersFavAdapter.CharViewHolder(view)
+        return CharViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CharactersFavAdapter.CharViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CharViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
     }

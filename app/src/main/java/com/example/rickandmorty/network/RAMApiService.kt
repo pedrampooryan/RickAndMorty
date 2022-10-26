@@ -1,6 +1,7 @@
 package com.example.rickandmorty.network
 
-import com.example.rickandmorty.charactersInfo.CharactersList
+import com.example.rickandmorty.network.charactersInfo.CharactersList
+import com.example.rickandmorty.screens.charactersList.RAMApiFilter
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -14,7 +15,14 @@ import retrofit2.http.Query
 interface RAMApiService {
 
     @GET("api/character")
-    fun getCharacters(@Query("page") page: Int): Deferred<CharactersList>
+    suspend fun getCharacters(@Query("page") page: Int): CharactersList
+
+    @GET("api/character")
+    suspend fun getCharactersByGender(
+        @Query("gender") filter: String?,
+        @Query("page") page: Int
+    ): CharactersList
+
 
 }
 

@@ -2,16 +2,21 @@ package com.example.rickandmorty.network
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.rickandmorty.charactersInfo.CharactersList
-import com.example.rickandmorty.charactersInfo.CharactersProperty
+import com.example.rickandmorty.network.charactersInfo.CharactersList
+import com.example.rickandmorty.network.charactersInfo.CharactersProperty
+import com.example.rickandmorty.screens.charactersList.RAMApiFilter
 import com.example.rickandmorty.database.AppDao
 import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 
 class Repository @Inject constructor (private val RAMApi: RAMApiService,private val appDao: AppDao) {
-    fun getCharacters(page: Int): Deferred<CharactersList> {
+    suspend fun getCharacters(page: Int): CharactersList {
         return RAMApi.getCharacters(page)
     }
+
+    suspend fun getCharactersByGender(filter: RAMApiFilter?, page: Int) =
+        RAMApi.getCharactersByGender(filter?.value, page)
+
     fun insert(character: CharactersProperty) {
         return appDao.insert(character)
     }

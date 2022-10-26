@@ -1,16 +1,17 @@
-package com.example.rickandmorty.favorite
+package com.example.rickandmorty.screens.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.R
-import com.example.rickandmorty.charactersInfo.CharactersProperty
-import com.example.rickandmorty.charactersList.CharactersAdapter
+import com.example.rickandmorty.network.charactersInfo.CharactersProperty
+import com.example.rickandmorty.screens.charactersList.CharactersAdapter
 import com.example.rickandmorty.databinding.FragmentCharactersBinding
 import com.example.rickandmorty.databinding.FragmentCharactersFavoriteBinding
 
@@ -40,7 +41,6 @@ class CharactersFavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.RecyclerViewFavorite.adapter = adapter
 
-
         viewModel.favoriteChars.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
             if (it.isEmpty()) {
@@ -58,6 +58,7 @@ class CharactersFavoriteFragment : Fragment() {
         }*/
         binding.clearAllButton.setOnClickListener {
             viewModel.clearAllFavChars()
+            Toast.makeText(context, "All Favorites Deleted!",Toast.LENGTH_SHORT).show()
         }
 
     }

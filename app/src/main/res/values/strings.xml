@@ -15,5 +15,9 @@
     <string name="clear_all">Clear All</string>
     <string name="add_to_favorite">Add To Favorite</string>
     <string name="no_favorite_character">No Favorite Character !</string>
+    <string name="show_all">Show All</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="unknown">Unknown</string>
 
 </resources>

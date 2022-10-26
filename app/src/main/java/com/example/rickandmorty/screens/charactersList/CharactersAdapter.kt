@@ -1,4 +1,4 @@
-package com.example.rickandmorty.charactersList
+package com.example.rickandmorty.screens.charactersList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
-import com.example.rickandmorty.charactersInfo.CharactersProperty
+import com.example.rickandmorty.charactersList.CharactersFragmentDirections
+import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 import com.example.rickandmorty.databinding.CharacterViewBinding
 
 
@@ -32,7 +33,10 @@ class CharactersAdapter :
                 .error(R.drawable.ic_broken_image)
                 .into(binding.characterImage)
             itemView.setOnClickListener {view ->
-                val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailFragment(character)
+                val action =
+                    CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailFragment(
+                        character
+                    )
                 view.findNavController().navigate(action)
             }
 

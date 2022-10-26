@@ -7,7 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.rickandmorty.charactersInfo.CharactersProperty
+import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 
 
 @Dao

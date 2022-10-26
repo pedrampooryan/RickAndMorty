@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/SHOW_ALL"
+        android:title="@string/show_all" />
+    <item android:title="@string/female"
+        android:id="@+id/JustFemale"/>
+    <item android:title="@string/male"
+        android:id="@+id/JustMale"/>
+    <item android:title="@string/unknown"
+        android:id="@+id/JustUnknown"/>
+</menu>
