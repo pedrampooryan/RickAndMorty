@@ -9,15 +9,11 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 
-
 @Dao
 interface AppDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(character: CharactersProperty)
-
-    @Update
-    fun update(character: CharactersProperty)
 
     @Query("DELETE FROM favorite_chars_db_table ")
     fun clearAll()

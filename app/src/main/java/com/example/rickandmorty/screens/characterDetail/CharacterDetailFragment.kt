@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
@@ -19,7 +20,7 @@ class CharacterDetailFragment : Fragment() {
     private var _binding: FragmentCharacterDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val args: com.example.rickandmorty.characterDetail.CharacterDetailFragmentArgs by navArgs()
+    private val args: CharacterDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

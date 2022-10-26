@@ -15,14 +15,10 @@ import retrofit2.http.Query
 interface RAMApiService {
 
     @GET("api/character")
-    suspend fun getCharacters(@Query("page") page: Int): CharactersList
-
-    @GET("api/character")
     suspend fun getCharactersByGender(
         @Query("gender") filter: String?,
         @Query("page") page: Int
     ): CharactersList
-
 
 }
 

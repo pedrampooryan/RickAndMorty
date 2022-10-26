@@ -8,11 +8,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
-import com.example.rickandmorty.network.charactersInfo.CharactersProperty
-import com.example.rickandmorty.screens.charactersList.CharactersAdapter
-import com.example.rickandmorty.charactersList.CharactersFragmentDirections
 import com.example.rickandmorty.databinding.CharacterViewBinding
-import com.example.rickandmorty.favorite.CharactersFavoriteFragmentDirections
+import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 
 class CharactersFavAdapter :
     ListAdapter<CharactersProperty, CharactersFavAdapter.CharViewHolder>(CharsDiffCallback()) {
@@ -20,17 +17,15 @@ class CharactersFavAdapter :
     class CharViewHolder(private val binding: CharacterViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(character: CharactersProperty) {
-            binding.characterIdText.text = character.id.toString()
-            binding.characterNameText.text = character.name
-            /* Picasso.get().load(character.image)
-                 .placeholder(R.drawable.loading_animation)
-                 .error(R.drawable.ic_broken_image)
-                 .into(binding.characterImage)*/
-            Glide.with(binding.characterImage.context)
-                .load(character.image)
-                .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken_image)
-                .into(binding.characterImage)
+            binding.apply {
+                characterIdText.text = character.id.toString()
+                characterNameText.text = character.name
+                Glide.with(characterImage.context)
+                    .load(character.image)
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image)
+                    .into(characterImage)
+            }
             itemView.setOnClickListener {view ->
                 val action =
                     CharactersFavoriteFragmentDirections.actionCharactersFavoriteFragmentToCharacterDetailFragment2(
@@ -38,7 +33,6 @@ class CharactersFavAdapter :
                     )
                 view.findNavController().navigate(action)
             }
-
         }
     }
 
@@ -52,7 +46,6 @@ class CharactersFavAdapter :
         val item = getItem(position)
         holder.bind(item)
     }
-
 
     class CharsDiffCallback : DiffUtil.ItemCallback<CharactersProperty>() {
         override fun areItemsTheSame(
@@ -69,14 +62,4 @@ class CharactersFavAdapter :
             return oldItem == newItem
         }
     }
-
-    /* override fun getItemCount(): Int {
-      return listCharacters.size
-  }*/
-
-
-    /*fun setCharacters(characters: List<CharactersProperty>) {
-        listCharacters = characters
-        notifyDataSetChanged()
-    }*/
 }

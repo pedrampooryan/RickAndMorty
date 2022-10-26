@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.MyNavHostContainer) as NavHostFragment
         navController = navHostFragment.navController
 
-
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigationView.setupWithNavController(navController)
 
@@ -35,9 +34,6 @@ class MainActivity : AppCompatActivity() {
             AppBarConfiguration(setOf(R.id.charactersFragment, R.id.charactersFavoriteFragment))
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-
-        /*val navController = this.findNavController(R.id.MyNavHostFragment)
-        NavigationUI.setupActionBarWithNavController(this, navController)*/
     }
 
     override fun onSupportNavigateUp(): Boolean {

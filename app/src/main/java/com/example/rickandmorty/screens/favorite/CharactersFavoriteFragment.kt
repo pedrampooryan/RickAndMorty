@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.R
@@ -18,16 +19,14 @@ import com.example.rickandmorty.databinding.FragmentCharactersFavoriteBinding
 class CharactersFavoriteFragment : Fragment() {
 
     private val viewModel: CharactersFavoriteViewModel by activityViewModels()
-
     private val adapter = CharactersFavAdapter()
-
     private var _binding: FragmentCharactersFavoriteBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCharactersFavoriteBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -53,14 +52,9 @@ class CharactersFavoriteFragment : Fragment() {
             }
         })
 
-        /*binding.clearAllButton.setOnClickListener {
-            viewModel.clearAllFavChars()
-        }*/
         binding.clearAllButton.setOnClickListener {
             viewModel.clearAllFavChars()
             Toast.makeText(context, "All Favorites Deleted!",Toast.LENGTH_SHORT).show()
         }
-
     }
-
 }

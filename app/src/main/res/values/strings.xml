@@ -19,5 +19,10 @@
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="unknown">Unknown</string>
+    <string name="all_chars">Characters List: All</string>
+    <string name="female_chars">Characters List: Female</string>
+    <string name="male_chars">Characters List: Male</string>
+    <string name="unknown_chars">Characters List: Unknown</string>
+    <string name="character_title">Characters List: %1$s</string>
 
 </resources>

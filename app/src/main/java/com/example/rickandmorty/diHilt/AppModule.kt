@@ -20,7 +20,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-
     @Provides
     @Singleton
     fun getAppDatabase(@ApplicationContext context: Context): AppDatabase {
@@ -32,7 +31,6 @@ object AppModule {
     fun getAppDao(appDatabase: AppDatabase): AppDao {
         return appDatabase.getAppDao()
     }
-
 
     private const val Base_URL = "https://rickandmortyapi.com/"
 
@@ -59,7 +57,4 @@ object AppModule {
     fun provideRAMApi(retrofit: Retrofit): RAMApiService {
         return retrofit.create(RAMApiService::class.java)
     }
-
-
-
 }

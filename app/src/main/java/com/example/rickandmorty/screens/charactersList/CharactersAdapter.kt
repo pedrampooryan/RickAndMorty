@@ -8,12 +8,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rickandmorty.R
-import com.example.rickandmorty.charactersList.CharactersFragmentDirections
-import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 import com.example.rickandmorty.databinding.CharacterViewBinding
+import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 
 
-//class CharactersAdapter() : RecyclerView.Adapter<CharactersAdapter.CharViewHolder>() {
 class CharactersAdapter :
     ListAdapter<CharactersProperty, CharactersAdapter.CharViewHolder>(CharsDiffCallback()) {
 
@@ -23,10 +21,6 @@ class CharactersAdapter :
         fun bind(character: CharactersProperty) {
             binding.characterIdText.text = character.id.toString()
             binding.characterNameText.text = character.name
-            /* Picasso.get().load(character.image)
-                 .placeholder(R.drawable.loading_animation)
-                 .error(R.drawable.ic_broken_image)
-                 .into(binding.characterImage)*/
             Glide.with(binding.characterImage.context)
                 .load(character.image)
                 .placeholder(R.drawable.loading_animation)
@@ -39,7 +33,6 @@ class CharactersAdapter :
                     )
                 view.findNavController().navigate(action)
             }
-
         }
     }
 
@@ -53,7 +46,6 @@ class CharactersAdapter :
         val item = getItem(position)
         holder.bind(item)
     }
-
 
     class CharsDiffCallback : DiffUtil.ItemCallback<CharactersProperty>() {
         override fun areItemsTheSame(
@@ -70,14 +62,4 @@ class CharactersAdapter :
             return oldItem == newItem
         }
     }
-
-    /* override fun getItemCount(): Int {
-      return listCharacters.size
-  }*/
-
-
-    /*fun setCharacters(characters: List<CharactersProperty>) {
-        listCharacters = characters
-        notifyDataSetChanged()
-    }*/
 }

@@ -33,17 +33,25 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
     val status: LiveData<ApiStatus>
         get() = _status
 
+    private val _characterTitle = MutableLiveData<String>()
+    val characterTitle : LiveData<String>
+    get () = _characterTitle
+
     init {
         getRAMCharacters()
+        _characterTitle.value = "all"
     }
 
     fun setFilter(filter: RAMApiFilter?) {
         if (filter == this.filter) return
         this.filter = filter
+        if (filter != null) { _characterTitle.value = filter.value}
+        else {_characterTitle.value = "all" }
         page = 1
         charsList = emptyList()
         getRAMCharacters()
     }
+
 
     fun getRAMCharacters(){
         if (_status.value == ApiStatus.Loading)  return

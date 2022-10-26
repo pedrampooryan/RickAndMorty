@@ -26,7 +26,7 @@ class CharactersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentCharactersBinding.inflate(inflater, container, false)
         return binding.root
@@ -65,6 +65,11 @@ class CharactersFragment : Fragment() {
                 }
                 ApiStatus.Done -> binding.statusImg.visibility = View.GONE
             }
+        }
+
+        viewModel.characterTitle.observe(viewLifecycleOwner) {
+            binding.charactersTitle.text = getString(R.string.character_title, it)
+
         }
 
         menuHost.addMenuProvider(object : MenuProvider {

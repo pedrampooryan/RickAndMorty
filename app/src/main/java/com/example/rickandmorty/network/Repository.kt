@@ -10,9 +10,6 @@ import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 
 class Repository @Inject constructor (private val RAMApi: RAMApiService,private val appDao: AppDao) {
-    suspend fun getCharacters(page: Int): CharactersList {
-        return RAMApi.getCharacters(page)
-    }
 
     suspend fun getCharactersByGender(filter: RAMApiFilter?, page: Int) =
         RAMApi.getCharactersByGender(filter?.value, page)
@@ -23,10 +20,6 @@ class Repository @Inject constructor (private val RAMApi: RAMApiService,private 
 
     fun getAllFavChars(): LiveData<List<CharactersProperty>> {
         return appDao.getAllFavChars()
-    }
-
-    fun update(character: CharactersProperty){
-        return appDao.update(character)
     }
 
     fun clearAll() {
