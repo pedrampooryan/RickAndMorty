@@ -18,7 +18,7 @@ data class CharactersProperty(
     val name: String="rick",
 
     @ColumnInfo(name = "status")
-    val status: String="alivev",
+    val status: String="alive",
 
     @ColumnInfo(name = "species")
     val species: String="human",

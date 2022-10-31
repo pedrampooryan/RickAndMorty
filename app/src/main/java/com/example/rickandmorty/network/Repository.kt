@@ -1,12 +1,9 @@
 package com.example.rickandmorty.network
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.rickandmorty.network.charactersInfo.CharactersList
+import com.example.rickandmorty.database.AppDao
 import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 import com.example.rickandmorty.screens.charactersList.RAMApiFilter
-import com.example.rickandmorty.database.AppDao
-import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 
 class Repository @Inject constructor (private val RAMApi: RAMApiService,private val appDao: AppDao) {

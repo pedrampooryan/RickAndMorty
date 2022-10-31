@@ -52,7 +52,6 @@ class CharactersViewModel @Inject constructor(private val repository: Repository
         getRAMCharacters()
     }
 
-
     fun getRAMCharacters(){
         if (_status.value == ApiStatus.Loading)  return
         viewModelScope.launch {

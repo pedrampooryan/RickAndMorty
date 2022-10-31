@@ -15,7 +15,6 @@ import com.example.rickandmorty.network.charactersInfo.CharactersProperty
 class CharactersAdapter :
     ListAdapter<CharactersProperty, CharactersAdapter.CharViewHolder>(CharsDiffCallback()) {
 
-
     class CharViewHolder(private val binding: CharacterViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(character: CharactersProperty) {

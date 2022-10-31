@@ -11,31 +11,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentCharactersBinding
 import com.example.rickandmorty.extensions.onBottomReached
+import com.example.rickandmorty.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class CharactersFragment : Fragment() {
+class CharactersFragment : Fragment(R.layout.fragment_characters) {
 
+    private val binding by viewBinding(FragmentCharactersBinding::bind)
     private val viewModel: CharactersViewModel by viewModels()
-    private var _binding: FragmentCharactersBinding? = null
-    private val binding get() = _binding!!
-
     private val adapter = CharactersAdapter()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentCharactersBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
